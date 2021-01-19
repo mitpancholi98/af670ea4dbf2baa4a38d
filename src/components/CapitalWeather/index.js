@@ -1,0 +1,70 @@
+import {
+  Avatar,
+  Card,
+  CardContent,
+  CircularProgress,
+  makeStyles,
+  Typography,
+} from "@material-ui/core";
+import React, { useState } from "react";
+import { useEffect } from "react";
+import { weatherApi } from "../../utility/API";
+
+const useStyles = makeStyles({
+  root: {
+    maxWidth: 345,
+    minHeight: 200,
+    justifyContent: "center",
+    alignItems: "center",
+    margin: "10px auto",
+  },
+});
+
+const CapitalWeather = ({ capital }) => {
+  const [weather, setWeather] = useState({});
+  const classes = useStyles();
+  useEffect(() => {
+    getWeatherData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [capital]);
+
+  const getWeatherData = async () => {
+    try {
+      const result = await weatherApi.get(
+        `/current?access_key=${process.env.REACT_APP_WEATHER_API_KEY}&query=${capital}`
+      );
+      setWeather(result.data);
+      console.log(result.data);
+    } catch (e) {
+      alert(e);
+    }
+  };
+
+  return (
+    <Card className={classes.root}>
+      {weather?.current ? (
+        <CardContent>
+          <Typography variant="h4">{capital}</Typography>
+          <Typography variant="body1" color="textSecondary">
+            Temperature : {weather.current.temperature + "°"}
+          </Typography>
+          <Avatar
+            variant="rounded"
+            className={classes.rounded}
+            src={weather.current.weather_icons[0]}
+          />
+          <Typography variant="body1" color="textSecondary">
+            Wind Speed : {weather.current.wind_speed} km/h
+          </Typography>
+          <Typography variant="body1" color="textSecondary">
+            Precipitation : {weather.current.precip} %
+          </Typography>
+        </CardContent>
+      ) : (
+        <CircularProgress size={30} />
+      )}
+    </Card>
+  );
+};
+
+export default CapitalWeather;
