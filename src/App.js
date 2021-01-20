@@ -1,16 +1,20 @@
+import { ThemeProvider } from "@material-ui/core";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import CountryInfo from "./components/CountryInfo";
 import CountrySearch from "./components/CountrySearch";
+import theme from "./Theme";
 
 const App = () => {
   return (
-    <Router>
-      <Switch>
-        <Route path="/" exact component={CountrySearch} />
-        <Route path="/country" exact component={CountryInfo} />
-      </Switch>
-    </Router>
+    <ThemeProvider theme={theme}>
+      <Router>
+        <Switch>
+          <Route path="/" exact component={CountrySearch} />
+          <Route path="/country" exact component={CountryInfo} />
+        </Switch>
+      </Router>
+    </ThemeProvider>
   );
 };
 

@@ -44,6 +44,7 @@ const CountrySearch = () => {
   return (
     <Container className={classes.container}>
       <TextField
+        size="small"
         value={searchInput}
         onChange={(e) => setSearchInput(e.target.value)}
         fullWidth
@@ -58,7 +59,7 @@ const CountrySearch = () => {
         variant="contained"
         color="primary"
         startIcon={
-          loading && <CircularProgress size={20} color={colors.white} />
+          loading && <CircularProgress size={20} color={colors.blue[200]} />
         }
       >
         Submit
