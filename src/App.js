@@ -1,6 +1,5 @@
 import { ThemeProvider } from "@material-ui/core";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import "./App.css";
 import CountryInfo from "./components/CountryInfo";
 import CountrySearch from "./components/CountrySearch";
 import Navbar from "./components/Navbar";
