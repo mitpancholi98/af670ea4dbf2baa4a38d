@@ -1,7 +1,6 @@
 import {
   Button,
   CircularProgress,
-  colors,
   Container,
   makeStyles,
   TextField,
@@ -16,6 +15,9 @@ const useStyles = makeStyles({
   },
   button: {
     marginTop: 15,
+  },
+  loader: {
+    color: "white",
   },
 });
 
@@ -59,7 +61,7 @@ const CountrySearch = () => {
         variant="contained"
         color="primary"
         startIcon={
-          loading && <CircularProgress size={20} color={colors.blue[200]} />
+          loading && <CircularProgress size={20} className={classes.loader} />
         }
       >
         Submit

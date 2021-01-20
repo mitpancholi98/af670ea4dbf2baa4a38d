@@ -1,14 +1,11 @@
-import {
-  AppBar,
-  colors,
-  makeStyles,
-  Toolbar,
-  Typography,
-} from "@material-ui/core";
+import { AppBar, makeStyles, Toolbar, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
     margin: "0 auto",
+  },
+  h5: {
+    color: "white",
   },
 }));
 
@@ -17,7 +14,7 @@ const Navbar = () => {
   return (
     <AppBar position="static">
       <Toolbar className={classes.toolbar}>
-        <Typography variant="h5" color={colors.blue[200]}>
+        <Typography variant="h5" className={classes.h5}>
           Country and Weather Info
         </Typography>
       </Toolbar>
